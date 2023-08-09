@@ -1,0 +1,29 @@
+.scroll {
+  &__link {
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.1;
+    color: var(--dark-color);
+    margin-left: 5px;
+  }
+
+  animation: scroll-down 1.5s infinite;
+}
+
+@keyframes scroll-down {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+@media #{$up-to-desktop} {
+  .scroll {
+    display: none;
+  }
+}

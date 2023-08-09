@@ -1,0 +1,13 @@
+.tag {
+  font-family: var(--font-family);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.1;
+  color: var(--light-color);
+  text-align: center;
+
+  padding: 4px 8px;
+  border-radius: 40px;
+  background: rgba(0, 0, 0, 0.2);
+}

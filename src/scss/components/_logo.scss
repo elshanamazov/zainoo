@@ -1,0 +1,19 @@
+.logo {
+  display: flex;
+  align-items: center;
+  height: 14vh;
+  z-index: 3;
+
+  &__img {
+    width: 116px;
+    height: 32px;
+  }
+}
+
+
+@media #{$mobile} {
+  .logo__img {
+    width: 110px;
+    height: 30px;
+  }
+}
