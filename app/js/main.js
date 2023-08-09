@@ -110,30 +110,41 @@ burgerMenu();
 
 function bindModal(trigger, modal, close) {
   const btns = document.querySelectorAll(trigger);
-  modal = document.querySelector(modal), close = document.querySelector(close);
+  const modalElement = document.querySelector(modal);
+  const closeElement = document.querySelector(close);
   const body = document.body;
-  const modalVideoNode = document.querySelector('.js-modal-video');
+  const modalVideoNode = document.querySelector(".js-modal-video");
   let src = modalVideoNode.dataset.src;
+  let iframe = null;
   [...btns].forEach(btn => {
-    btn.addEventListener('click', e => {
+    btn.addEventListener("click", e => {
       e.preventDefault();
-      modal.style.display = 'flex';
-      body.classList.add('locked');
-      modalVideoNode.insertAdjacentHTML('afterbegin', `<iframe class="modal__iframe" src=${src} frameborder="0" allowfullscreen></iframe>`);
+      modalElement.style.display = "flex";
+      body.classList.add("locked");
+      iframe = document.createElement("iframe");
+      iframe.className = "modal__iframe";
+      iframe.src = src;
+      iframe.style.border = "none";
+      iframe.allowFullscreen = true;
+      modalVideoNode.appendChild(iframe);
     });
   });
-  close.addEventListener('click', () => {
-    modal.style.display = 'none';
-    body.classList.remove('locked');
-  });
-  modal.addEventListener('click', e => {
-    if (e.target === modal) {
-      modal.style.display = 'none';
-      body.classList.remove('locked');
+  function closeModal() {
+    modalElement.style.display = "none";
+    body.classList.remove("locked");
+    if (iframe) {
+      iframe.remove();
+      iframe = null;
+    }
+  }
+  closeElement.addEventListener("click", closeModal);
+  modalElement.addEventListener("click", e => {
+    if (e.target === modalElement) {
+      closeModal();
     }
   });
 }
-bindModal('.modal__btn', '.modal__wrapper', '.modal__close');
+bindModal(".modal__btn", ".modal__wrapper", ".modal__close");
 
 /***/ }),
 
